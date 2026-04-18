@@ -1,0 +1,273 @@
+/* Configurações Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header e Monitor de Status */
+/* Força o título a ocupar a largura toda no topo */
+.header-geral {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f4f4f4;
+    border-bottom: 4px solid #ffc107;
+    margin-bottom: 20px;
+}
+
+.header-geral h1 {
+    color: #004a99;
+    margin: 0;
+    font-size: 2.2em;
+}
+
+h2 {
+    margin: 0;
+}
+
+#status-rede {
+    transition: all 0.5s ease;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-height: 480px; 
+    overflow-y: auto;
+}
+
+#status-rede::-webkit-scrollbar {
+    width: 8px;
+}
+
+#status-rede::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#status-rede::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+/* Classes para mudar via JavaScript */
+.status-estavel {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-alerta {
+    background-color: #2f7ed3; /* Um vermelho mais sóbrio, tipo o do Google */
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+@keyframes flash {
+    50% { opacity: 0.7; }
+}
+
+/* Estilo do Formulário */
+.instrucoes {
+    font-size: 0.9em;
+    color: #666;
+    border-left: 4px solid #ffc107;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Garante que o padding não estoure a largura */
+}
+
+/* Opções de Assunto */
+.opcoes-radio {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.opcoes-radio label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+/* Destaque para Falta de Energia */
+.campo-checkbox {
+    background: #fff3cd;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px 0;
+    border: 1px solid #ffeeba;
+}
+
+/* Botão de Enviar */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #004494;
+}
+
+#mural-supervisor {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Estilo da barra de rolagem para Chrome/Edge/Safari */
+#mural-supervisor::-webkit-scrollbar {
+    width: 8px;
+}
+
+#mural-supervisor::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#mural-supervisor::-webkit-scrollbar-thumb {
+    background: #ffc107;
+    border-radius: 10px;
+}
+
+/* Estilo para cada item do mural */
+.item-comunicado {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+}
+
+.item-comunicado:last-child {
+    border-bottom: none;
+}
+
+/* Container que abraça as duas colunas */
+/* Container que divide as colunas */
+.corpo-dashboard {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se a tela for pequena */
+    gap: 25px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: stretch;
+}
+
+/* Coluna do Formulário (Esquerda) */
+.coluna-formulario {
+    flex: 1; /* Ocupa metade ou um pouco menos */
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.coluna-formulario > .card {
+    height: 100%;
+}
+
+/* Coluna dos Monitores (Direita) */
+.coluna-monitores {
+    flex: 1.2; /* Ocupa um pouco mais que a esquerda */
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+/* Estilo Geral dos Cards */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.mural-azul {
+    background-color: #004a99;
+    color: white;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.mural-vermelho {
+    background-color: #d32f2f;
+    color: white;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.titulo-secao {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.container-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.container-card > .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajuste para telas pequenas (Celular) */
+@media (max-width: 800px) {
+    .corpo-dashboard {
+        flex-direction: column; /* No celular, volta a ficar um embaixo do outro */
+    }
+}
+
+.rodape-fixo {
+    background-color: #004a99; /* Azul padrão */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.rodape-fixo p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle - RRE</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header-geral">
+        <h1>PAINEL DE CONTROLE</h1>
+    </div>
+
+    <div class="corpo-dashboard">
+        
+        <div class="coluna-formulario">
+            <main class="card">
+                <form id="form-os">
+                    <h1 class="titulo-secao">📝 Formulário - Ordem de Serviço</h1>
+                <p class="instrucoes">Este canal é para você encaminhar suas ordens e serviços. Tenha em mente que analisaremos a situação da melhor forma.</p>
+                <p class="instrucoes">Para situações <strong>inusitadas, atípicas ou para as quais você não tem treinamento</strong>, entre em contato com seu supervisor ou superior imediato.</p>
+                <p class="instrucoes">Para <strong>agilidade</strong>, podemos encaminhá-lo ao setor responsável. No entanto, o atendimento será realizado conforme a <strong>programação</strong> da área, não havendo garantia de atendimento imediato.</p>
+                <p class="instrucoes">Para riscos de vida, comunique que a ordem de serviço foi registrada.</p>
+
+
+                <div class="campo">
+                    <label for="uc">Número da unidade consumidora:</label>
+                    <input type="number" id="uc" name="uc" placeholder="Digite a UC" required>
+                </div>
+
+                <div class="campo">
+                    <label for="os">Número da ordem de serviço:</label>
+                    <input type="number" id="os" name="os" placeholder="Digite o nº da OS" required>
+                </div>
+
+                <div class="campo">
+                    <label for="nome">Seu nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="campo">
+                    <label>Qual assunto:</label>
+                    <div class="opcoes-radio">
+                        <label><input type="radio" name="assunto" value="2° Via de fatura" required> 2° Via de fatura</label>
+                        <label><input type="radio" name="assunto" value="Código de barras"> Código de barras</label>
+                        <label><input type="radio" name="assunto" value="Risco de vida" id="opcao-risco"> Risco de vida</label>
+                        <label><input type="radio" name="assunto" value="Falta de Energia" id="opcao-falta"> Falta de Energia</label>
+                        <label><input type="radio" name="assunto" value="Fora do prazo"> Fora do prazo</label>
+                        <label><input type="radio" name="assunto" value="Outros"> Outros</label>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="bairro">Localidade (Bairro ou Município):</label>
+                    <select id="bairro" name="bairro" required onchange="verificarOutros(this.value)" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                        <option value="">-- Selecione a Localidade --</option>
+
+                        <optgroup label="Bairros de Boa Vista">
+                            <option value="Aeroporto">Aeroporto</option>
+                            <option value="Alvorada">Alvorada</option>
+                            <option value="Aparecida">Aparecida</option>
+                            <option value="Aracelis">Aracelis</option>
+                            <option value="Asa Branca">Asa Branca</option>
+                            <option value="Bairro dos Estados">Bairro dos Estados</option>
+                            <option value="Bela Vista">Bela Vista</option>
+                            <option value="Buritis">Buritis</option>
+                            <option value="Caçari">Caçari</option>
+                            <option value="Caimbé">Caimbé</option>
+                            <option value="Calungá">Calungá</option>
+                            <option value="Cambará">Cambará</option>
+                            <option value="Canarinho">Canarinho</option>
+                            <option value="Caranã">Caranã</option>
+                            <option value="Cauamé">Cauamé</option>
+                            <option value="Centenário">Centenário</option>
+                            <option value="Centro">Centro</option>
+                            <option value="Cidade Satélite">Cidade Satélite</option>
+                            <option value="Cinturão Verde">Cinturão Verde</option>
+                            <option value="Cruviana">Cruviana</option>
+                            <option value="Distrito Industrial">Distrito Industrial</option>
+                            <option value="Dr. Sílvio Botelho">Dr. Sílvio Botelho</option>
+                            <option value="Dr. Sílvio Leite">Dr. Sílvio Leite</option>
+                            <option value="Dr. Airton Rocha">Dr. Airton Rocha</option>
+                            <option value="Equatorial">Equatorial</option>
+                            <option value="Felix Valois de Araújo">Felix Valois de Araújo</option>
+                            <option value="Jardim Caranã">Jardim Caranã</option>
+                            <option value="Jardim Floresta">Jardim Floresta</option>
+                            <option value="Jardim Primavera">Jardim Primavera</option>
+                            <option value="Jardim Tropical">Jardim Tropical</option>
+                            <option value="Jóquei Clube">Jóquei Clube</option>
+                            <option value="Laura Moreira">Laura Moreira</option>
+                            <option value="Liberdade">Liberdade</option>
+                            <option value="Marechal Rondon">Marechal Rondon</option>
+                            <option value="Mecejana">Mecejana</option>
+                            <option value="Murilo Teixeira">Murilo Teixeira</option>
+                            <option value="Nova Canaa">Nova Canaã</option>
+                            <option value="Nova Cidade">Nova Cidade</option>
+                            <option value="Olímpico">Olímpico</option>
+                            <option value="Operário">Operário</option>
+                            <option value="Paraviana">Paraviana</option>
+                            <option value="Piscicultura">Piscicultura</option>
+                            <option value="Pricumã">Pricumã</option>
+                            <option value="Raiar do Sol">Raiar do Sol</option>
+                            <option value="Said Salomão">Said Salomão</option>
+                            <option value="Santa Cecília">Santa Cecília (cantá)</option>
+                            <option value="Santa Luzia">Santa Luzia</option>
+                            <option value="Santa Tereza">Santa Tereza</option>
+                            <option value="São Bento">São Bento</option>
+                            <option value="São Francisco">São Francisco</option>
+                            <option value="São Pedro">São Pedro</option>
+                            <option value=" São Vicente">São Vicente</option>
+                            <option value="Senador Hélio Campos">Senador Hélio Campos</option>
+                            <option value="Tancredo Neves">Tancredo Neves</option>
+                            <option value="Treze de Setembro">Treze de Setembro</option>
+                            <option value="Trita e Um de Março">Trita e Um de Março</option>
+                            <option value="União">União</option>
+                            <option value="Outros">Outros</option>
+                        </optgroup>
+
+                        <optgroup label="Municípios de Roraima">
+                            <option value="Alto Alegre">Alto Alegre</option>
+                            <option value="Amajari">Amajari</option>
+                            <option value="Boa Vista">Boa Vista (Capital)</option>
+                            <option value="Bonfim">Bonfim</option>
+                            <option value="Cantá">Cantá</option>
+                            <option value="Caracaraí">Caracaraí</option>
+                            <option value="Caroebe">Caroebe</option>
+                            <option value="Iracema">Iracema</option>
+                            <option value="Mucajaí">Mucajaí</option>
+                            <option value="Normandia">Normandia</option>
+                            <option value="Pacaraima">Pacaraima</option>
+                            <option value="Rorainópolis">Rorainópolis</option>
+                            <option value="São João da Baliza">São João da Baliza</option>
+                            <option value="São Luiz">São Luiz</option>
+                            <option value="Uiramutã">Uiramutã</option>
+                            <option value="Outros">Outros</option>
+                        </optgroup>
+
+                    </select>
+                </div>
+
+                <div id="campo-outros" class="campo" style="display: none; margin-top: 10px;">
+                    <label for="localidade_especifica">Informe a Localidade:</label>
+                    <input type="text" id="localidade_especifica" name="localidade_especifica" placeholder="Ex: Vila do Equador, Vicinal X, etc.">
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descreva a situação de forma clara e objetiva:</label>
+                    <textarea id="descricao" name="descricao" rows="4" placeholder="Seja claro e objetivo..." required></textarea>
+                </div>
+
+                <button type="submit" id="btn-enviar">Encaminhar Demanda</button>
+            </form>
+        </main>
+    </div>
+    
+    <div class="coluna-monitores">
+            
+            <div class="container-card">
+                <h1 id="titulo-comunicado" class="titulo-secao" style="display: none;">📢 Comunicados da Supervisão</h1>
+                <div id="mural-supervisor" class="card mural-azul" style="display: none;">
+                    <div id="texto-comunicado"></div>
+                </div>
+            </div>
+
+            <div class="container-card">
+                <h1 class="titulo-secao">📊 Monitor de Ocorrências</h1>
+                <div class="card mural-vermelho">
+                        <p id="mensagem-status">Nenhuma O.S de falta de energia encaminhada</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="rodape-fixo">
+        <p>&copy; 2026 - Monitor de Ocorrências RRE | call contact center</p>
+        <p>Desenvolvido por <strong>GR projects</strong> | PEX</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
