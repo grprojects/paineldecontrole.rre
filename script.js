@@ -34,7 +34,6 @@ document.getElementById('form-os').addEventListener('submit', async (e) => {
     const assuntoSelecionado = document.querySelector('input[name="assunto"]:checked').value;
     const confirmarFaltaSelecionado = document.querySelector('input[name="confirmar_falta"]:checked');
     
-    // Determinar o valor de falta_energia conforme as regras
     let faltaEnergia = "Não";
     if (assuntoSelecionado === "Falta de Energia") {
         faltaEnergia = "Sim";
@@ -81,10 +80,9 @@ async function atualizarMonitor() {
         // --- MURAL DO SUPERVISOR ---
         const mural = document.getElementById('mural-supervisor');
         const textoMsg = document.getElementById('texto-comunicado');
-        const tituloComunicado = document.getElementById('titulo-comunicado'); // Certifique-se que este ID existe no seu H1/H2 do comunicado
+        const tituloComunicado = document.getElementById('titulo-comunicado');
 
         if (mural && textoMsg) {
-            // Mantemos o mural e o título sempre visíveis
             mural.style.display = 'block';
             if (tituloComunicado) tituloComunicado.style.display = 'block';
 
@@ -115,7 +113,7 @@ async function atualizarMonitor() {
             if (data.ocorrencias && data.ocorrencias.length > 0) {
                 painel.className = "card-monitor mural-vermelho";
                 
-                // Adicionamos o .reverse() logo após o .slice() para inverter a lista
+
                 msg.innerHTML = data.ocorrencias.slice().reverse().map(reg => `
                     <div style="background-color: rgba(255, 255, 255, 0.15); margin-bottom: 8px; padding: 10px; border-radius: 8px; border-left: 5px solid #fff; text-align: left;">
                         <span style="color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.95em;">${reg.bairro}</span>
@@ -135,7 +133,7 @@ async function atualizarMonitor() {
 
 // 4. INICIALIZAÇÃO E EVENTOS
 atualizarMonitor();
-setInterval(atualizarMonitor, 5000); // Atualiza a cada 5 segundos
+setInterval(atualizarMonitor, 30000); // Atualiza a cada 30 segundos
 
 camposAssunto.forEach(radio => {
     radio.addEventListener('change', () => {
