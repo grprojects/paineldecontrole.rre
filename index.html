@@ -52,6 +52,14 @@
                     </div>
                 </div>
 
+                <div id="container-pergunta-energia" class="campo campo-checkbox" style="display: none;">
+                    <label>O cliente está SEM ENERGIA no local?</label>
+                    <div class="opcoes-radio">
+                        <label><input type="radio" name="confirmar_falta" value="Sim"> Sim</label>
+                        <label><input type="radio" name="confirmar_falta" value="Não"> Não</label>
+                    </div>
+                </div>
+
                 <div class="campo">
                     <label for="bairro">Localidade (Bairro ou Município):</label>
                     <select id="bairro" name="bairro" required onchange="verificarOutros(this.value)" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
@@ -175,8 +183,8 @@
     </div>
 
     <footer class="rodape-fixo">
-        <p>&copy; 2026 - Monitor de Ocorrências RRE | call contact center</p>
-        <p>Desenvolvido por <strong>GR projects</strong> | PEX</p>
+        <p>&copy; 2026 - Painel de controle RRE | call contact center</p>
+        <p>Desenvolvido por <strong>GR Projects</strong> | PEX</p>
     </footer>
 
     <script src="script.js"></script>

@@ -31,13 +31,25 @@ document.getElementById('form-os').addEventListener('submit', async (e) => {
 
     let localidadeFinal = (bairroSelecionado === "Outros") ? localidadeDigitada : bairroSelecionado;
 
+    const assuntoSelecionado = document.querySelector('input[name="assunto"]:checked').value;
+    const confirmarFaltaSelecionado = document.querySelector('input[name="confirmar_falta"]:checked');
+    
+    // Determinar o valor de falta_energia conforme as regras
+    let faltaEnergia = "Não";
+    if (assuntoSelecionado === "Falta de Energia") {
+        faltaEnergia = "Sim";
+    } else if (assuntoSelecionado === "Risco de vida" && confirmarFaltaSelecionado) {
+        faltaEnergia = confirmarFaltaSelecionado.value;
+    }
+    
     const dadosParaEnviar = {
         uc: document.getElementById('uc').value,
         os: document.getElementById('os').value,
         nome: document.getElementById('nome').value,
-        assunto: document.querySelector('input[name="assunto"]:checked').value,
-        bairro: localidadeFinal, 
-        descricao: document.getElementById('descricao').value
+        assunto: assuntoSelecionado,
+        bairro: localidadeFinal,
+        descricao: document.getElementById('descricao').value,
+        falta_energia: faltaEnergia
     };
 
     try {
@@ -69,10 +81,15 @@ async function atualizarMonitor() {
         // --- MURAL DO SUPERVISOR ---
         const mural = document.getElementById('mural-supervisor');
         const textoMsg = document.getElementById('texto-comunicado');
+        const tituloComunicado = document.getElementById('titulo-comunicado'); // Certifique-se que este ID existe no seu H1/H2 do comunicado
 
         if (mural && textoMsg) {
+            // Mantemos o mural e o título sempre visíveis
+            mural.style.display = 'block';
+            if (tituloComunicado) tituloComunicado.style.display = 'block';
+
             if (data.mural && data.mural.length > 0) {
-                mural.style.display = 'block';
+                // Se houver mensagens, exibe a lista
                 textoMsg.innerHTML = data.mural.map(item => `
                     <div class="item-comunicado">
                         <div style="margin-bottom: 8px;">
@@ -84,7 +101,9 @@ async function atualizarMonitor() {
                     </div>
                 `).join("");
             } else {
-                mural.style.display = 'none';
+                textoMsg.innerHTML = `<div style="color: rgba(255,255,255,0.6); font-style: italic; text-align: center; padding: 20px;">
+                                        Nenhuma orientação da supervisão no momento.
+                                    </div>`;
             }
         }
 
@@ -121,6 +140,8 @@ setInterval(atualizarMonitor, 5000); // Atualiza a cada 5 segundos
 camposAssunto.forEach(radio => {
     radio.addEventListener('change', () => {
         const asterisco = document.getElementById('asterisco-bairro');
+        const containerEnergía = document.getElementById('container-pergunta-energia');
+        
         if (radio.value === "Risco de vida" || radio.value === "Falta de Energia") {
             inputBairro.required = true;
             if(asterisco) asterisco.style.display = "inline";
@@ -129,6 +150,13 @@ camposAssunto.forEach(radio => {
             inputBairro.required = false;
             if(asterisco) asterisco.style.display = "none";
             inputBairro.style.backgroundColor = "#fff"; 
+        }
+        
+        // Mostrar/esconder pergunta de energia apenas para "Risco de vida"
+        if (radio.value === "Risco de vida") {
+            containerEnergía.style.display = "block";
+        } else {
+            containerEnergía.style.display = "none";
         }
     });
 });
