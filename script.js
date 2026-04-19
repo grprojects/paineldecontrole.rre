@@ -66,57 +66,60 @@ async function atualizarMonitor() {
         const response = await fetch(URL_API + "?t=" + new Date().getTime());
         const data = await response.json();
 
-        // Dentro de atualizarMonitor...
+        // --- MURAL DO SUPERVISOR ---
         const mural = document.getElementById('mural-supervisor');
-        const titulo = document.getElementById('titulo-comunicado');
         const textoMsg = document.getElementById('texto-comunicado');
 
-        if (data.mural && data.mural.length > 0) {
-            mural.style.display = 'block';
-            if(titulo) titulo.style.display = 'block';
-
-            textoMsg.innerHTML = data.mural.map(item => `
-                <div class="item-comunicado">
-                    <div style="margin-bottom: 8px;">
-                        <span style="background: #ffc107; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold;">
-                            POSTADO ÀS ${item.hora}
-                        </span>
+        if (mural && textoMsg) {
+            if (data.mural && data.mural.length > 0) {
+                mural.style.display = 'block';
+                textoMsg.innerHTML = data.mural.map(item => `
+                    <div class="item-comunicado">
+                        <div style="margin-bottom: 8px;">
+                            <span style="background: #ffc107; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold;">
+                                POSTADO ÀS ${item.hora}
+                            </span>
+                        </div>
+                        <div style="font-size: 1.1em; line-height: 1.5; color: #ffffff;">${item.texto}</div>
                     </div>
-                    <div style="font-size: 1.1em; line-height: 1.5; color: #ffffff;">${item.texto}</div>
-                </div>
-            `).join("");
-        } else {
-            mural.style.display = 'none';
-            if(titulo) titulo.style.display = 'none';
+                `).join("");
+            } else {
+                mural.style.display = 'none';
+            }
         }
 
-        // Parte do Monitor de Bairros (Mesma lógica)
+        // --- MONITOR DE OCORRÊNCIAS (Status de Rede) ---
         const painel = document.getElementById('status-rede');
         const msg = document.getElementById('mensagem-status');
 
-        if (data.ocorrencias && data.ocorrencias.length > 0) {
-            painel.className = "mural-vermelho";
-            msg.innerHTML = data.ocorrencias.slice().reverse().map(reg => `
-                <div style="background-color: rgba(255, 255, 255, 0.15); margin-bottom: 6px; padding: 8px; border-radius: 8px; border-left: 5px solid #fff;">
-                    <span style="color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.95em;">${reg.bairro}</span>
-                    <br><small style="font-size: 0.85em;">${reg.horario}</small>
-                </div>
-            `).join("");
-        } else {
-            painel.className = "status-estavel";
-            msg.innerHTML = "Nenhuma O.S de falta de energia encaminhada";
+        if (painel && msg) {
+            if (data.ocorrencias && data.ocorrencias.length > 0) {
+                // Ativa o modo Alerta (Vermelho)
+                painel.className = "card-monitor mural-vermelho";
+                
+                // Exibe os bairros formatados em lista
+                msg.innerHTML = data.ocorrencias.slice().map(reg => `
+                    <div style="background-color: rgba(255, 255, 255, 0.15); margin-bottom: 8px; padding: 10px; border-radius: 8px; border-left: 5px solid #fff; text-align: left;">
+                        <span style="color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.95em;"> ${reg.bairro}</span>
+                        <br><small style="font-size: 0.85em; opacity: 0.9;">Encaminhado às ${reg.horario}</small>
+                    </div>
+                `).join("");
+            } else {
+                // Modo Estável (Padrão)
+                painel.className = "card-monitor";
+                msg.innerHTML = "Nenhuma O.S de falta de energia encaminhada";
+            }
         }
 
     } catch (error) {
-            console.log("Erro:", error);
-        }
+        console.log("Erro na atualização:", error);
     }
+}
 
-// 4. INICIALIZAÇÃO
+// 4. INICIALIZAÇÃO E EVENTOS
 atualizarMonitor();
-setInterval(atualizarMonitor, 5000); // Atualiza tudo a cada 5 segundos
+setInterval(atualizarMonitor, 5000); // Atualiza a cada 5 segundos
 
-// Lógica de obrigatoriedade e cores dos rádios
 camposAssunto.forEach(radio => {
     radio.addEventListener('change', () => {
         const asterisco = document.getElementById('asterisco-bairro');

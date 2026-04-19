@@ -6,8 +6,6 @@ body {
     padding: 0;
 }
 
-/* Header e Monitor de Status */
-/* Força o título a ocupar a largura toda no topo */
 .header-geral {
     width: 100%;
     text-align: center;
@@ -58,7 +56,7 @@ h2 {
 }
 
 .status-alerta {
-    background-color: #2f7ed3; /* Um vermelho mais sóbrio, tipo o do Google */
+    background-color: #2f7ed3;
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -74,9 +72,10 @@ h2 {
 .instrucoes {
     font-size: 0.9em;
     color: #666;
-    border-left: 4px solid #ffc107;
+    border-left: 4px solid #ffc107; /* Mudei para amarelo para combinar com o header */
     padding-left: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Espaço entre as instruções */
+    line-height: 1.5;
 }
 
 .campo {
@@ -96,7 +95,7 @@ textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box; /* Garante que o padding não estoure a largura */
+    box-sizing: border-box;
 }
 
 /* Opções de Assunto */
@@ -172,11 +171,10 @@ button:hover {
     border-bottom: none;
 }
 
-/* Container que abraça as duas colunas */
 /* Container que divide as colunas */
 .corpo-dashboard {
     display: flex;
-    flex-wrap: wrap; /* Permite quebrar linha se a tela for pequena */
+    flex-wrap: wrap;
     gap: 25px;
     max-width: 1300px;
     margin: 0 auto;
@@ -186,7 +184,7 @@ button:hover {
 
 /* Coluna do Formulário (Esquerda) */
 .coluna-formulario {
-    flex: 1; /* Ocupa metade ou um pouco menos */
+    flex: 1;
     min-width: 350px;
     display: flex;
     flex-direction: column;
@@ -198,7 +196,7 @@ button:hover {
 
 /* Coluna dos Monitores (Direita) */
 .coluna-monitores {
-    flex: 1.2; /* Ocupa um pouco mais que a esquerda */
+    flex: 1.2;
     min-width: 350px;
     display: flex;
     flex-direction: column;
@@ -222,10 +220,26 @@ button:hover {
 }
 
 .mural-vermelho {
-    background-color: #d32f2f;
-    color: white;
-    max-height: 500px;
+    background-color: #d9534f !important;
+    color: white !important;
+    font-weight: bold;
+    border: none;
+    max-height: 400px;
     overflow-y: auto;
+}
+
+.card-monitor {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f1f3f5;
+    color: #333;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .titulo-secao {
@@ -259,7 +273,7 @@ button:hover {
 }
 
 .rodape-fixo {
-    background-color: #004a99; /* Azul padrão */
+    background-color: #004a99;
     color: white;
     text-align: center;
     padding: 20px 0;
