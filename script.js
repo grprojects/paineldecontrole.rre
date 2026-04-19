@@ -94,18 +94,16 @@ async function atualizarMonitor() {
 
         if (painel && msg) {
             if (data.ocorrencias && data.ocorrencias.length > 0) {
-                // Ativa o modo Alerta (Vermelho)
                 painel.className = "card-monitor mural-vermelho";
                 
-                // Exibe os bairros formatados em lista
-                msg.innerHTML = data.ocorrencias.slice().map(reg => `
+                // Adicionamos o .reverse() logo após o .slice() para inverter a lista
+                msg.innerHTML = data.ocorrencias.slice().reverse().map(reg => `
                     <div style="background-color: rgba(255, 255, 255, 0.15); margin-bottom: 8px; padding: 10px; border-radius: 8px; border-left: 5px solid #fff; text-align: left;">
-                        <span style="color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.95em;"> ${reg.bairro}</span>
+                        <span style="color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.95em;">${reg.bairro}</span>
                         <br><small style="font-size: 0.85em; opacity: 0.9;">Encaminhado às ${reg.horario}</small>
                     </div>
                 `).join("");
             } else {
-                // Modo Estável (Padrão)
                 painel.className = "card-monitor";
                 msg.innerHTML = "Nenhuma O.S de falta de energia encaminhada";
             }
